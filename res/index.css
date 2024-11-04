@@ -1,0 +1,23 @@
+body{margin:0;font-family:Simsun,system-ui,sans-serif,'Noto Sans Arabic','Arial';font-size:16px;}
+div#iushm,div#iozuta,div.irfrtani,p,li{line-height:1.5em;}
+a{color:#00f;display:inline-block;}
+a:focus,a:hover{color:#f00;}
+div{border-radius:3px;}
+div#main{display:flex;place-content:center;}
+div.page{background:#ffe;overflow:hidden;}
+div.content{padding:8px;}
+div#toolbar{display:none;}
+@media screen and (min-device-width:60mm){
+	div#main{padding-top:2em;}
+	div.content{padding:1.1cm;}
+	body{background:url("bg.svg");background-attachment:fixed;}
+}
+@media screen and (min-device-width:120mm){
+	div.content{padding:2.2cm;}
+	div.page{width:100%;max-width:210mm;min-height:297mm;}
+}
+h1,h2,h3,h4,h5,h6{margin:0;}
+ul{padding-inline-start:28px;}
+ul li{list-style-image:url('list.gif');}
+select{min-height:22px;border:none;font-size:16px;}
+hr{border:none;border-bottom:1px solid #666;}
