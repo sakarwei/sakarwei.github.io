@@ -27,9 +27,7 @@ hr{border:none;border-bottom:1px solid #666;}
 nav#page-nav{float:right;}
 nav#page-nav a{text-decoration:none;}
 .page-number{margin:8px;display:inline-block;}
-ul.article-tag-list{display:inline-block;margin:0;padding:0;}
 div.irfrtani a{color:#000;text-decoration:none;}
-ul.article-tag-list li{display:inline-block;border-bottom:1px solid #07f;padding-left:3px;padding-right:3px;margin-right:9px;}
 div.irfrtani a:hover,.zilk-ksh>a:hover{color:#f00;}
 figure{overflow:auto;margin:8px;background:#ddd;}pre{margin:8px;}
 .article-category{display:flow;}
@@ -42,3 +40,4 @@ oi-veki{display:none;border:1px dashed #999;}
 a.oi-veki{user-select:none;}
 div#ksu img{margin-top:-3px;margin-right:3px;}
 m{color:#22f;}
+span.tag a{color:#000;}span.tag a:hover{color:#f00;}
