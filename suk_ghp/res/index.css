@@ -58,8 +58,7 @@ span.tag a{color:#000;}
 span.tag a:hover{color:#f00;}
 
 /* Aftteseni */
-@media(prefers-color-scheme:no-preference){body{background:url("bg.svg");}}
-@media(prefers-color-scheme:light){body{background:url("bg.svg");}}
+body{background:url("bg.svg");}
 /* AU IUSHM TTE AFTTESENI JAMJTUU (尚未完成的黑暗模式) */
 /* @media(prefers-color-scheme:dark){
 img{filter:brightness(0.9);}
