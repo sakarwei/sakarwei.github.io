@@ -1,16 +1,17 @@
+/* bucenur */
 body{margin:0;font-family:Simsun,system-ui,sans-serif,'Noto Sans Arabic','Arial';font-size:16px;}
 div#iushm,div#iozuta,div.irfrtani,p,li{line-height:1.5em;}
-a{color:#00f;display:inline-block;}
-a:focus,a:hover{color:#f00;}
+a{display:inline-block;}
+div#ksu img{margin-top:-3px;margin-right:3px;}
 div{border-radius:3px;}
 div#main{display:flex;place-content:center;}
-div.page{background:#ffe;overflow:hidden;}
+div.page{overflow:hidden;}
 div.content{padding:8px;}
 div#toolbar{display:none;}
 @media screen and (min-device-width:60mm){
 	div#main{padding-top:2em;}
 	div.content{padding:1.1cm;}
-	body{background:url("bg.svg");background-attachment:fixed;}
+	body{background-attachment:fixed;}
 }
 @media screen and (min-device-width:120mm){
 	div.content{padding:2.2cm;}
@@ -22,22 +23,56 @@ ul li{list-style-image:url('list.gif');}
 select{min-height:22px;border:none;font-size:16px;}
 hr{border:none;border-bottom:1px solid #666;}
 
+/* Buce tolicy */
+body{color:#000;}
+a{color:#00f;}
+a:focus,a:hover{color:#f00;}
+div.page{background:#ffe;}
+
 /* HEXO tanitte nur velishb */
-.zilk-ksh>a{font-weight:bold;text-decoration:none;color:#000000;}
+/* BUCEKSU */
+blockquote p{margin:0;}
+.zilk-ksh>a{font-weight:bold;text-decoration:none;}
 nav#page-nav{float:right;}
 nav#page-nav a{text-decoration:none;}
 .page-number{margin:8px;display:inline-block;}
-div.irfrtani a{color:#000;text-decoration:none;}
-div.irfrtani a:hover,.zilk-ksh>a:hover{color:#f00;}
-figure{overflow:auto;margin:8px;background:#ddd;}pre{margin:8px;}
+div.irfrtani a{text-decoration:none;}
+figure{overflow:auto;margin:8px;}
+pre{margin:8px;}
 .article-category{display:flow;}
-p.iozuta{background:#ddf;padding:8px;}
+p.iozuta{padding:8px;}
 p.iozutawsmj{margin:0;}
 right{float:right;}
-blockquote{margin:0;border:1px solid #999;}
-blockquote p{margin:0;}
-oi-veki{display:none;border:1px dashed #999;}
+blockquote{margin:0;}
 a.oi-veki{user-select:none;}
-div#ksu img{margin-top:-3px;margin-right:3px;}
+blockquote{border:1px solid #999;}
+oi-veki{display:none;border:1px dashed #999;}
+/* BUCETOLI */
+.zilk-ksh>a{color:#000000;}
+div.irfrtani a{color:#000;}
+div.irfrtani a:hover,.zilk-ksh>a:hover{color:#f00;}
+figure{background:#ddd;}
+p.iozuta{background:#ddf;}
 m{color:#22f;}
-span.tag a{color:#000;}span.tag a:hover{color:#f00;}
+span.tag a{color:#000;}
+span.tag a:hover{color:#f00;}
+
+/* Aftteseni */
+@media(prefers-color-scheme:no-preference){body{background:url("bg.svg");}}
+@media(prefers-color-scheme:light){body{background:url("bg.svg");}}
+/* AU IUSHM TTE AFTTESENI JAMJTUU (尚未完成的黑暗模式) */
+/* @media(prefers-color-scheme:dark){
+img{filter:brightness(0.9);}
+body{background:#222;color:#fff;}
+a{color:#39f;}
+a:focus,a:hover{color:#f66;}
+div.page{background:#111;}
+.zilk-ksh>a{color:#ffffff;}
+div.irfrtani a{color:#fff;}
+div.irfrtani a:hover,.zilk-ksh>a:hover{color:#f66;}
+figure{background:#111;}
+p.iozuta{background:#114;}
+m{color:#39f;}
+span.tag a{color:#fff;}
+span.tag a:hover{color:#f22;}
+} */
