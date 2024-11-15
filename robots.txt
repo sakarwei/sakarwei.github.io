@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /yt.html
 Disallow: /Shkryiofa.html
 Disallow: /404.html
