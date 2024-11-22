@@ -41,6 +41,18 @@
 <h1 id="详细信息"><a href="#详细信息" class="headerlink" title="详细信息"></a>详细信息</h1><h2 id="一、提前编写脚本"><a href="#一、提前编写脚本" class="headerlink" title="一、提前编写脚本"></a>一、提前编写脚本</h2><p>首先写好脚本，可以把脚本放到伪装文件夹（非C:的System、system32、DATA等等，或者使用伪装文件格式名）</p>
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">taskkill</span> /f /im mythware.exe</span><br><span class="line"><span class="built_in">taskkill</span> /f /im StudentMain.exe</span><br><span class="line"><span class="comment">rem 测试中的代码</span></span><br></pre></td></tr></table></figure>
 <h2 id="二、老师发起屏幕广播时"><a href="#二、老师发起屏幕广播时" class="headerlink" title="二、老师发起屏幕广播时"></a>二、老师发起屏幕广播时</h2><p>将鼠标移动到屏幕顶部，极域电子教室的屏幕广播会出现工具栏，最左方有视图菜单，将菜单打开后，输入法会出现，此时使用右键点击输入法，会出现菜单。<br>点击输入法菜单的属性设置，弹出设置程序界面，与此同时，Windows 菜单栏也出现了，将鼠标移动到“屏幕广播”处，Windows7以上一般会显示预览窗，点击关闭按钮，窗口不会关闭，但若不执行此步骤，点击开始菜单的瞬间会被屏幕广播拉回来。<br>点击关闭后，开始菜单能够正常打开了，通过小娜找到并运行我们写好的脚本文件，运行，便脱离了控制！</p>
+<hr>
+<p>后续补充：</p>
+<p>标题：极域电子教室存在被关闭漏洞（补充）<br>日期：2020&#x2F;09&#x2F;10</p>
+<p>经过实验，我们发现了我们的破解方法存在部分问题。</p>
+<h1 id="一、屏幕广播时，键盘无法使用"><a href="#一、屏幕广播时，键盘无法使用" class="headerlink" title="一、屏幕广播时，键盘无法使用"></a>一、屏幕广播时，键盘无法使用</h1><p>收到反馈称屏幕广播时，键盘无法使用，按键失灵<br>解决建议：</p>
+<blockquote>
+<p>使用输入法自带的软键盘功能（如果有的话）</p>
+</blockquote>
+<h1 id="二、Windows-10-小娜不能搜索到-bat-文件"><a href="#二、Windows-10-小娜不能搜索到-bat-文件" class="headerlink" title="二、Windows 10 小娜不能搜索到 bat 文件"></a>二、Windows 10 小娜不能搜索到 bat 文件</h1><p>Windows 10 的小娜不能搜索到编写好的 bat文件。<br>解决建议：</p>
+<blockquote>
+<p>直接将小娜当成运行窗口执行指令（输入 bat 文件的完整路径）</p>
+</blockquote>
 
 
 

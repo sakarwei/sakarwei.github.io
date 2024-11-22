@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+<!-- Iushm OK -->
+<title>关注公众号才能解锁文章？我不信！ Cy Sakarwei GHP</title>
+<link href="/favicon.svg" type="image/svg" rel="shotcut icon"/>
+
+<link rel="stylesheet" href="/suk_ghp/res/index.css">
+
+
+<script src="/suk_ghp/res/saka.js"></script>
+
+<meta charset="UTF-8">
+<meta name="author" content="Saka">
+<meta name="description" content="Sat Jun 06 2020 00:00:00 GMT+0800 代码研究日记。这个方法在很多网站上已经失效了。"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<!-- Igmj KSU je -->
+<body>
+  <div id="main">
+    <div class="page">
+      <div class="content">
+        <div id="ksu"><a href="/index.html"><img src="/suk_ghp/res/root.gif"/></a><a href="/suk_ghp/index.html"><img src="/suk_ghp/res/home.gif"/></a>&nbsp;SakaGHP Blog<hr/></div>
+        <section id="iushm">
+          
+<h1>关注公众号才能解锁文章？我不信！</h1>
+<div class="irfrtani">
+	<m>於</m> <time>20年6月6日</time><br/>
+	
+	<m>作</m>
+	<a href="/suk_ghp/authors/tags/Cy-Saka">Saka</a>
+	
+
+	
+
+
+	<p class="iozuta">代码研究日记。这个方法在很多网站上已经失效了。</p>
+</div>
+<p>今日（二〇二〇年六月二十日）早上，我浏览网页，发现前段开发博客的一篇写用CSS制作标签页的文章，阅读结果显示需要关注公众号获得验证码才能阅读。<br>我不信。于是开始研究那个网页。<br>我下载那个网页，发现那个网页由机器生成，排版很混乱，但是不影响我研究。查找标题顺利找出文章内容所在区域。网页制作者将文章的主要内容区域隐藏在了注解里。<br><img src="/suk_ghp/img/a202006201057-1.png" alt="研究截图"></p>
+<p>同时我发现了点击展开全文跳出对话框的代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;contWxPop&quot;</span> <span class="attr">class</span>=<span class="string">&quot;readmore&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;_hmt.push(9&#x27;_trackEvent&#x27;,&#x27;article&#x27;,&#x27;click&#x27;,&#x27;700&#x27;])&quot;</span>&gt;</span>点击展开全文<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>（部分代码需要隐藏）<br>将文章主要内容区域删除所有CSS与js脚本后，成功在不关注公众号的情况下看到全文内容，但是不能显示样式。<br><img src="/suk_ghp/img/a202006201057-2.png" alt="结果"><br>最终结果如图</p>
+
+
+
+
+        </section>
+        <hr/>
+        <center>&copy;2014~2024 Sakarwei<br/>除非另有声明，本站内容採用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 授權。<br/>頁末出現本字段之頁面，採用 Hexo 輔助生成<br/><img src="https://badges.toozhao.com/badges/01JC2K3JD6REFRFC50VPEP65MT/blue.svg"/></center>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
