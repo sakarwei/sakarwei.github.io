@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Allow: /suk_ghp/
 Disallow: /shkryiofa.html
 Disallow: /404.html
