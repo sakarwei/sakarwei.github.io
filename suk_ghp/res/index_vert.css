@@ -1,27 +1,23 @@
 /* bucenur */
-body{margin:0;font-family:Simsun,system-ui,sans-serif,'Noto Sans Arabic','Arial';font-size:16px;}
+body{margin:0;font-family:Simsun,system-ui,sans-serif,'Noto Sans Arabic','Arial';font-size:16px;letter-spacing:2px;}
 div#iushm,div#iozuta,div.irfrtani,p,li{line-height:1.5em;}
 a{display:inline-block;}
-div#ksu img{margin-top:-3px;margin-right:3px;}
 div{border-radius:3px;}
-div#main{display:flex;place-content:center;}
-div.page{overflow:hidden;}
+div#main{display:flex;place-content:center;margin-left:auto;margin-right:auto;writing-mode:tb-rl;}
+div.page{height:100%;}
 div.content{padding:8px;}
 div#toolbar{display:none;}
-@media screen and (min-device-width:60mm){
-	div#main{padding-top:2em;}
-	div.content{padding:1.1cm;}
-	body{background-attachment:fixed;}
-}
+
 @media screen and (min-device-width:120mm){
-	div.content{padding:2.2cm;}
-	div.page{width:100%;max-width:210mm;min-height:297mm;}
+	body{background:url("bg.svg");}
+	div.content{padding:1.1cm;}
+	div.page{height:95%;}
 }
 h1,h2,h3,h4,h5,h6{margin:0;}
 ul{padding-inline-start:28px;}
 ul li{list-style-image:url('list.gif');}
 select{min-height:22px;border:none;font-size:16px;}
-hr{border:none;border-bottom:1px solid #666;}
+/* hr{border:none;border-left:1px solid #999;} */
 
 /* Buce tolicy */
 body{color:#000;}
@@ -58,7 +54,7 @@ span.tag a{color:#000;}
 span.tag a:hover{color:#f00;}
 img{max-width:100%;}
 /* Aftteseni */
-body{background:url("bg.svg");}
+
 /* AU IUSHM TTE AFTTESENI JAMJTUU (尚未完成的黑暗模式) */
 /* @media(prefers-color-scheme:dark){
 img{filter:brightness(0.9);}
