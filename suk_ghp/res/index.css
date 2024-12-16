@@ -59,6 +59,7 @@ span.tag a:hover{color:#f00;}
 img{max-width:100%;}
 /* Aftteseni */
 body{background:url("bg.svg");}
+a{word-break:break-all;}
 /* AU IUSHM TTE AFTTESENI JAMJTUU (尚未完成的黑暗模式) */
 /* @media(prefers-color-scheme:dark){
 img{filter:brightness(0.9);}
