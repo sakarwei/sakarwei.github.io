@@ -15,7 +15,7 @@
 
 <meta charset="UTF-8">
 <meta name="author" content="Saka">
-<meta name="description" content="Wed May 20 2020 00:00:00 GMT+0800 代码研究日记"/>
+<meta name="description" content="2025/01/02 除了文末的最新补充和打码内容之外之外，其余原文呈现。"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <meta name="generator" content="Hexo 7.3.0"></head>
 <!-- Igmj KSU je -->
@@ -28,7 +28,7 @@
 					
 <h1>＊书网页存在“推广浏览器”恶意病毒代码！</h1>
 <div class="irfrtani">
-	<m>於</m> <time>20年5月20日</time><br/>
+	<m>於</m> <time>20年5月20日</time>（最新編輯：<time>25年1月2日</time>）<br/>
 	
 	<m>作</m>
 	<a href="/suk_ghp/authors/tags/Cy-Saka">Saka</a>
@@ -37,13 +37,16 @@
 	
 
 
-	<p class="iozuta">代码研究日记</p>
+	<p class="iozuta">除了文末的最新补充和打码内容之外之外，其余原文呈现。</p>
 </div>
 <p>＊书文章页面存在“推广浏览器”恶意代码，当用户使用手机浏览器访问＊书文章页面的时候会显示“升级浏览器”的提示框，还在玩文字游戏！<br>我研究后发现一个奇怪的 js 文件：(<a target="_blank" rel="noopener" href="https://ji*n.t5*b.com/js/ji%EF%BC%8An.js)%EF%BC%8C%E7%82%B9%E5%BC%80%E5%90%8E%E5%8F%91%E7%8E%B0%E8%BF%99%E4%B8%AAjs%E6%96%87%E4%BB%B6%E8%A2%AB%E5%8A%A0%E5%AF%86%EF%BC%8C%E4%BD%86%E6%98%AF%E5%A4%A7%E6%A6%82%E8%83%BD%E5%A4%9F%E7%9C%8B%E5%BE%97%E5%87%BA%E8%BF%99%E4%B8%AA">https://ji＊n.t5＊b.com/js/ji＊n.js)，点开后发现这个js文件被加密，但是大概能够看得出这个</a> js 会检查用户手机系统类型以及手机设备机型，然后再决定是否显示“升级浏览器”提示框，安卓显示，其它系统不显示。<br>片段一：显示对话框</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span>(<span class="params">_0x5＊3b,_0x＊7be9,_0xb＊e4,_0x2d4514</span>)&#123;<span class="keyword">return</span> _0x5＊3b(_0x＊7be9,_0xb＊e4,_0x2d4514);&#125;,<span class="string">&#x27;uTnnW&#x27;</span>:<span class="string">&#x27;手机浏览器版本过低！请立即免费升级!&#x27;</span>,<span class="string">&#x27;jALwo&#x27;</span>:<span class="title function_">_0x21a4</span>(<span class="string">&#x27;9b&#x27;</span>,<span class="string">&#x27;yiOW&#x27;</span>),<span class="string">&#x27;vWheg&#x27;</span>:<span class="string">&#x27;您确定取消升级吗&#x27;</span>,<span class="string">&#x27;aRdfT&#x27;</span>:<span class="keyword">function</span>(<span class="params">_0x1e0777,_0x5cd5ec,_0x51d0cb</span>)&#123;<span class="keyword">return</span> <span class="title function_">_0x1e0777</span>(_0x5cd5ec,_0x51d0cb);&#125;,</span><br></pre></td></tr></table></figure>
 <p>片段二：检测机型</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;CoRoX&#x27;</span>:<span class="keyword">function</span>(<span class="params">_0x＊＊<span class="number">87</span>,_0x＊＊78f</span>)&#123;<span class="keyword">return</span> _0x＊＊<span class="number">87</span>+_0x＊＊78f;&#125;,<span class="string">&#x27;BpxxK&#x27;</span>:<span class="string">&#x27;nhuyj||&#x27;</span>,<span class="string">&#x27;wOCls&#x27;</span>:<span class="string">&#x27;华＊荣＊4A&#x27;</span>,<span class="string">&#x27;rHeAT&#x27;</span>:<span class="keyword">function</span>(<span class="params">_0x3＊c8,_0x230381</span>)&#123;<span class="keyword">return</span> _0x3＊c8!==_0x230381;&#125;,<span class="string">&#x27;eoGrW&#x27;</span>:<span class="title function_">_0x21a4</span>(<span class="string">&#x27;9d&#x27;</span>,<span class="string">&#x27;XhB4&#x27;</span>),<span class="string">&#x27;NXQbo&#x27;</span>:<span class="keyword">function</span>(<span class="params">_0x35＊a,_0x58a23e</span>)&#123;<span class="keyword">return</span> _0x35＊<span class="title function_">a</span>(_0x58a23e);&#125;</span><br></pre></td></tr></table></figure>
 <p>这个 js 使用 jsjiami（JS加密）加密。<br>我决定抵制＊书！不在＊书注册账号，不在＊书发布任何文章。</p>
+<blockquote>
+<p>补充：那个时候不知道CDN投毒什么的，以为是平台和病毒勾结，所以非常幼稚地加上了最后一行233</p>
+</blockquote>
 
 
 

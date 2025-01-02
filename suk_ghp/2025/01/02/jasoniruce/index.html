@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+<!-- Iushm OK -->
+<title>半・碎记・设站后：我对数空间检索引擎的个人评价 Cy Sakarwei GHP</title>
+<link href="/favicon.svg" type="image/svg" rel="shotcut icon"/>
+
+	
+<link rel="stylesheet" href="/suk_ghp/res/index.css">
+
+
+
+<script src="/suk_ghp/res/saka.js"></script>
+
+<meta charset="UTF-8">
+<meta name="author" content="Saka,Yange">
+<meta name="description" content="Thu Jan 02 2025 00:00:00 GMT+0800 几个月之前，我们留意到有一些网络“资产测绘”之类的搜索引擎平台，可以根据IP、软体、作业系统之类的服务器资讯来检索公网可访问的IP及其服务。我们自己也没少被这些平台的机械扫描过。被扫了好一段时间之后，说说我们对不同平台的发现与看法。"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<!-- Igmj KSU je -->
+<body>
+	<div id="main">
+		<div class="page">
+			<div class="content">
+				<div id="ksu"><a href="/index.html"><img src="/suk_ghp/res/root.gif"/></a><a href="/suk_ghp/index.html"><img src="/suk_ghp/res/home.gif"/></a>&nbsp;SakaGHP Blog<hr/></div>
+				<section id="iushm">
+					
+<h1>半・碎记・设站后：我对数空间检索引擎的个人评价</h1>
+<div class="irfrtani">
+	<m>於</m> <time>25年1月2日</time><br/>
+	
+	<m>作</m>
+	<a href="/suk_ghp/authors/tags/Cy-Saka">Saka</a> y 
+	<a href="/suk_ghp/authors/tags/Cy-Yange">Yange</a>
+	
+
+	
+	<div class="article-category">
+		<m>类</m>
+		<a class="article-category-link" href="/suk_ghp/categories/%E6%8A%80%E6%9C%AF/">技术</a> 〉<a class="article-category-link" href="/suk_ghp/categories/%E6%8A%80%E6%9C%AF/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/">信息安全</a>
+	</div>
+
+<m>籤</m>
+<span class="tag"><a href="/suk_ghp/tags/碎记">碎记</a></span>
+	<p class="iozuta">几个月之前，我们留意到有一些网络“资产测绘”之类的搜索引擎平台，可以根据IP、软体、作业系统之类的服务器资讯来检索公网可访问的IP及其服务。我们自己也没少被这些平台的机械扫描过。被扫了好一段时间之后，说说我们对不同平台的发现与看法。</p>
+</div>
+<h2 id="Censys"><a href="#Censys" class="headerlink" title="Censys"></a>Censys</h2><ul>
+<li>更新时间迅速（一天Ｎ更）</li>
+<li>免登入可检视其获取的绝大部分情报，历史情报需要注册（可能还要会员），注册有门槛；</li>
+<li>HTTP&#x2F;HTTPS 根据响应头辨别伺服器软体和作业系统。</li>
+<li>User-Agent 会明确表明身份，在伺服器软体记录可以明确检索；公开展示不避讳自家（出网） IP 位址。</li>
+</ul>
+<p>为数不多的可优化点：</p>
+<ul>
+<li>不访问 &#x2F;.well-known&#x2F;security.txt ，不获取安全联络讯息</li>
+<li>不隐去被扫主机 IP 位址</li>
+</ul>
+<h2 id="360-Quake"><a href="#360-Quake" class="headerlink" title="360 Quake"></a>360 Quake</h2><ul>
+<li>搜索结果会藏匿 IP 位址（但是在回应 Header 里面报自家IP的服务器还会不会藏的话我就不清楚了，因为我没试过。）</li>
+<li>更新频率一般；</li>
+<li>避讳自家IP，用星号代替；</li>
+<li>HTTP&#x2F;HTTPS 根据响应头辨别伺服器软体和作业系统。</li>
+</ul>
+<h2 id="FOFA"><a href="#FOFA" class="headerlink" title="FOFA"></a>FOFA</h2><ul>
+<li>更新频率适中（三天两头偶尔一周）</li>
+<li>历史记录累积并入册，用作参考</li>
+<li>HTTP&#x2F;HTTPS 根据响应头辨别服务器软体和作业系统；</li>
+<li>SSH、SMTP 泄漏情报辨别服务端软体和作业系统。</li>
+<li>公示信息中会隐去自家 IP 位址，用星号<code>*.*.*.*</code>表示，似乎是针对自家IP的，不是所有IP。</li>
+<li>UserAgent 留空。</li>
+<li>在侦测到疑似存在敏感内容（违反中国法律）时会隐藏 IP、响应体等信息（比如色情网站）</li>
+</ul>
+<h2 id="SHODAN"><a href="#SHODAN" class="headerlink" title="SHODAN"></a>SHODAN</h2><ul>
+<li>免费版本仅支援检索彼方取得的最新情报</li>
+<li>会根据响应头辨别服务器软体和作业系统</li>
+<li>会收集 security.txt 呈现安全信息。（已知的惟一）</li>
+<li>同一站点发见存在伪造嫌疑时，可能多次访问以对策服务器响应头随机伪造行为；</li>
+<li>我方在 Shodan 上<strong>检索到的我站响应头被修改</strong>！彼出网IP被内网保留IP取替。</li>
+<li>发现有关软体有漏洞就在绍介页面立马 PO 出来……</li>
+</ul>
+<h2 id="X-情报社区・资产测绘"><a href="#X-情报社区・资产测绘" class="headerlink" title="X 情报社区・资产测绘"></a>X 情报社区・资产测绘</h2><ul>
+<li>更新频率一般（超过一周一次）</li>
+<li>在侦测到疑似存在敏感内容时会隐藏 IP、响应体等信息（但是侦测得似乎有点敏感）</li>
+</ul>
+<p>但是情报社区可以提供不少情报，还有社交论坛。</p>
+<h2 id="其余的"><a href="#其余的" class="headerlink" title="其余的"></a>其余的</h2><ul>
+<li>Onyphe：更新不太及时，和 X 情报社区差不多。但是保留历史检索记录。以及我不清楚他是怎么根据有限信息判断我方操作系统的……至少误判了。很多功能需要会员。</li>
+<li>Pulsedive：可以实时检测</li>
+<li>Hunter.how：面登入条件下，情报非常一般，不如 360 和 FOFA，而且限止大陆IP访问，香港IP访问顺利；</li>
+<li>Zoomeye：org 后缀的国内访问顺利，数据严重过时，是几年前的，那个时候我都还没接手……ai后缀的大陆IP访问报“Service Unavailable”，香港IP可以访问，但是检索迟迟不给结果；</li>
+<li>urlscan.io：进不去，卡在人机鉴定（）</li>
+</ul>
+<p><strong>总之个人目前最爱 Censys，其次是 FOFA 和 Shodan，然后是 X情报社区，剩下的emmmmmm……</strong></p>
+<hr>
+<p>目前我了解到的引擎有：（根据我个人偏好程度排序）</p>
+<ul>
+<li>Censys</li>
+<li>360 Quake</li>
+<li>FOFA</li>
+<li>Pulsedive</li>
+<li>Shodan</li>
+<li>X 情报社区</li>
+<li>Onyphe</li>
+<li>Hunter.how</li>
+<li>criminalip.io</li>
+<li>Zoomeye</li>
+<li>urlscan.io</li>
+</ul>
+
+
+
+
+
+				</section>
+				<hr/>
+				<center>&copy;2014~2024 Sakarwei<br/>除非另有声明，本站内容採用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 授權。<br/>頁末出現本字段之頁面，採用 Hexo 輔助生成<br/><img src="https://badges.toozhao.com/badges/01JC2K3JD6REFRFC50VPEP65MT/blue.svg"/></center>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
