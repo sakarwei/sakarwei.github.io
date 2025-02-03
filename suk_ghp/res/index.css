@@ -1,7 +1,6 @@
 /* bucenur */
 body{margin:0;font-family:Simsun,system-ui,sans-serif,'Noto Sans Arabic','Arial';font-size:16px;}
 div#iushm,div#iozuta,div.irfrtani,p,li{line-height:1.5em;}
-a{display:inline-block;}
 div#ksu img{margin-top:-3px;margin-right:3px;}
 div{border-radius:3px;}
 div#main{display:flex;place-content:center;}

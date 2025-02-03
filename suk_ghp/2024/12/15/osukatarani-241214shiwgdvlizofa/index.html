@@ -4,7 +4,7 @@
 
 <!-- Iushm OK -->
 <title>2024年12月14日发现的攻击行为分析 Cy Sakarwei GHP</title>
-<link href="/favicon.svg" type="image/svg" rel="shotcut icon"/>
+<link href="/favicon.ico" type="image/x-icon" rel="shotcut icon"/>
 
 	
 <link rel="stylesheet" href="/suk_ghp/res/index.css">
@@ -15,7 +15,7 @@
 
 <meta charset="UTF-8">
 <meta name="author" content="Saka">
-<meta name="description" content="2024/12/15 记录网站运行中的发现的一些迷惑请求。其实这个只是冰山一角，只是我确实没有多少时间整理，就先上载这个吧。"/>
+<meta name="description" content="2024/12/15 记录网站运行中的发现的一些迷惑请求。其实这个只是冰山一角，只是我确实没有多少时间整理，就先上载这个吧。（彼时因为技术有限，没有检查各访问请求体之机会。后续发现该病毒试探 phpunit 时还附带指令请求体）"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <meta name="generator" content="Hexo 7.3.0"></head>
 <!-- Igmj KSU je -->
@@ -42,7 +42,7 @@
 
 
 
-	<p class="iozuta">记录网站运行中的发现的一些迷惑请求。其实这个只是冰山一角，只是我确实没有多少时间整理，就先上载这个吧。</p>
+	<p class="iozuta">记录网站运行中的发现的一些迷惑请求。其实这个只是冰山一角，只是我确实没有多少时间整理，就先上载这个吧。（彼时因为技术有限，没有检查各访问请求体之机会。后续发现该病毒试探 phpunit 时还附带指令请求体）</p>
 </div>
 <h1 id="2024年12月14日解析攻击记录"><a href="#2024年12月14日解析攻击记录" class="headerlink" title="2024年12月14日解析攻击记录"></a>2024年12月14日解析攻击记录</h1><p>　　今天照常检视日志的，又发现一个试图访问敏感目录的家伙。像这样拼命探索敏感位置的家伙，我们一般回复一个“200”一切正常的讯号，然后在返回的内容里面狂飙脏话炮轰这些黑客——其实现在也有，不过缩减了范围而已，专门针对 BotPoke 系列的家伙，虽然他们还没过来扫描我们。<br>　　这样坚持了几天没什么效果，于是就觉得无聊了，把返回大多数改回了应有的404。不过我们使了个心眼——因为我们看到他请求的内容有md5、hello等字样，于是我们就在配置文件和服务器做了个约定——如果看到参数有hello的，就返回hello的MD5摘要，hi、Hello同理，于是今天倒是是抓到了一些不大对劲的情况——攻击来了，有人试图往我们的公网主机植入挖矿病毒。</p>
 <p><img src="https://www.helloimg.com/i/2024/12/15/675db13c9f79d.png" alt="异常内容截图"></p>
@@ -76,7 +76,9 @@
 
 				</section>
 				<hr/>
-				<center>&copy;2014~2024 Sakarwei<br/>除非另有声明，本站内容採用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 授權。<br/>頁末出現本字段之頁面，採用 Hexo 輔助生成<br/><img src="https://badges.toozhao.com/badges/01JC2K3JD6REFRFC50VPEP65MT/blue.svg"/></center>
+				<center>&copy;2014~2025 Sakarwei<br/>除非另有声明，本站内容採用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 方式授權。<br/>頁末出現本字段之頁面，採用 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 輔助生成<br/>
+<img src="https://badges.toozhao.com/badges/01JC2K3JD6REFRFC50VPEP65MT/blue.svg"/>
+</center>
 			</div>
 		</div>
 	</div>
