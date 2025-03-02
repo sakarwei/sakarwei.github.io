@@ -90,3 +90,6 @@ span.name{color:#00f;}
 span.attr{color:#906;}
 
 span.comment{color:#888;}
+
+table{border-collapse:collapse;}
+th,td{border:1px solid #999;}
